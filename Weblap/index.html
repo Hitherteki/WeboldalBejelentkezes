@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bejelentkezés</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-worms">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    
+    <div class="container">
+        <div class="login-section" id="login-section">
+            <div class="login-box" id="login-box">
+                <h1>BEJELENTKEZÉS</h1>
+                <form id="loginForm">
+                    <div class="input-group">
+                        <input type="text" id="username" placeholder=" " required>
+                        <label for="username">FELHASZNÁLÓNÉV</label>
+                    </div>
+                    <div class="input-group">
+                        <input type="password" id="password" placeholder=" " required>
+                        <label for="password">JELSZÓ</label>
+                    </div>
+                    <button type="submit" class="login-button">BELÉPÉS</button>
+                </form>
+                <div class="theme-toggle-wrapper">
+                    <label for="themeToggle" class="theme-toggle-label">SÖTÉT / VILÁGOS MÓD</label>
+                    <input type="checkbox" id="themeToggle" class="theme-toggle">
+                </div>
+            </div>
+            
+            <div class="option-boxes">
+                <div class="option-box" id="forgot-password-link">
+                    <h2>ELFELEJTETTE A JELSZAVÁT?</h2>
+                    <p>Kattintson ide a jelszó visszaállításhoz</p>
+                </div>
+                <div class="option-box" id="create-account-link">
+                    <h2>FIÓK LÉTREHOZÁSA</h2>
+                    <p>Új fiók regisztrálása</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="login-box hidden" id="register-box">
+            <h1>REGISZTRÁCIÓ</h1>
+            <form id="registerForm">
+                <div class="input-group">
+                    <input type="text" id="reg-username" placeholder=" " required>
+                    <label for="reg-username">FELHASZNÁLÓNÉV</label>
+                </div>
+                <div class="input-group">
+                    <input type="email" id="reg-email" placeholder=" " required>
+                    <label for="reg-email">E-MAIL CÍM</label>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="reg-password" placeholder=" " required>
+                    <label for="reg-password">JELSZÓ</label>
+                </div>
+                <button type="submit" class="login-button">REGISZTRÁCIÓ</button>
+            </form>
+            <div class="options">
+                <a href="#" id="back-to-login-from-reg">VISSZA A BEJELENTKEZÉSHEZ</a>
+            </div>
+        </div>
+
+        <div class="login-box hidden" id="forgot-password-box">
+            <h1>JELSZÓ VISSZAÁLLÍTÁS</h1>
+            <form id="forgotPasswordForm">
+                <div class="input-group">
+                    <input type="email" id="forgot-email" placeholder=" " required>
+                    <label for="forgot-email">E-MAIL CÍM</label>
+                </div>
+                <button type="submit" class="login-button">KÜLDÉS</button>
+            </form>
+            <div class="options">
+                <a href="#" id="back-to-login-from-forgot">VISSZA A BEJELENTKEZÉSHEZ</a>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
