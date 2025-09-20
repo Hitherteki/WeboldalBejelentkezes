@@ -1,8 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // VÁLTOZÓK
+    /* === VÁLTOZÓK ÉS ELEMEK === */
     const elements = {
         body: document.body,
-        themeToggle: document.getElementById('themeToggle'),
         loginSection: document.getElementById('login-section'),
         registerBox: document.getElementById('register-box'),
         forgotPasswordBox: document.getElementById('forgot-password-box'),
@@ -17,38 +16,21 @@ document.addEventListener('DOMContentLoaded', () => {
         passwordToggle: document.getElementById('password-toggle'),
         regPasswordToggle: document.getElementById('reg-password-toggle'),
         finalRegButton: document.getElementById('final-reg-button'),
+        themeBoxes: document.querySelectorAll('.theme-box'),
     };
     
-    // A panelek
     const panels = [elements.loginSection, elements.registerBox, elements.forgotPasswordBox];
-
-    // SVG ikonok
     const eyeOpenIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>`;
     const eyeClosedIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>`;
 
     let currentStep = 1;
     const totalSteps = 4;
 
+    /* === ÁLTALÁNOS FUNKCIÓK === */
     const showPanel = (panelToShow) => {
         panels.forEach(panel => {
             panel.classList.toggle('hidden', panel !== panelToShow);
         });
-    };
-
-    const applyThemeTransition = () => {
-        const overlay = document.createElement('div');
-        overlay.className = 'theme-transition-overlay';
-        const rootStyle = getComputedStyle(document.documentElement);
-        const lightLineColor = rootStyle.getPropertyValue('--light-line').trim();
-        const darkLineColor = rootStyle.getPropertyValue('--dark-line').trim();
-        const lineColor = elements.body.classList.contains('light-mode') ? darkLineColor : lightLineColor;
-        overlay.style.setProperty('--line-color', lineColor);
-        elements.body.appendChild(overlay);
-
-        requestAnimationFrame(() => overlay.classList.add('animate'));
-
-        setTimeout(() => elements.body.classList.toggle('light-mode'), 400);
-        setTimeout(() => overlay.remove(), 800);
     };
 
     const showHexLoading = () => {
@@ -69,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
         elements.body.appendChild(overlay);
         requestAnimationFrame(() => overlay.classList.add('show'));
 
-        const loadingTime = Math.random() * 2000 + 1500; // 1.5-3.5  
+        const loadingTime = Math.random() * 2000 + 1500;
         return new Promise(resolve => {
             setTimeout(() => {
                 overlay.classList.remove('show');
@@ -102,8 +84,25 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    //Csik
+    /* === TÉMA KEZELÉS === */
+    const applyTheme = (themeName) => {
+        elements.body.className = '';
+        elements.body.classList.add(themeName);
+        localStorage.setItem('selectedTheme', themeName);
+    };
 
+    elements.themeBoxes.forEach(box => {
+        box.addEventListener('click', () => {
+            applyTheme(box.dataset.theme);
+        });
+    });
+
+    const loadTheme = () => {
+        const savedTheme = localStorage.getItem('selectedTheme') || 'theme-default';
+        applyTheme(savedTheme);
+    };
+    
+    /* === REGISZTRÁCIÓS FOLYAMAT === */
     const updateProgressBar = () => {
         document.querySelectorAll('.progress-step').forEach((stepEl, index) => {
             const stepNumber = index + 1;
@@ -115,7 +114,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
     
-    //ellenörzi hogy jo e a beirt cucc a reistrácios részen, ha igen akk zöld lesz
     const validateField = (field) => {
         const isValid = field.checkValidity();
         field.classList.toggle('invalid', !isValid);
@@ -137,7 +135,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        //jelsó
         if (currentStep === 3) {
             const password = document.getElementById('reg-password');
             const confirmPassword = document.getElementById('reg-password-confirm');
@@ -188,8 +185,7 @@ document.addEventListener('DOMContentLoaded', () => {
         showStep(currentStep);
     };
     
-    elements.themeToggle.addEventListener('change', applyThemeTransition);
-
+    /* === ESEMÉNYKEZELŐK === */
     elements.createAccountLink.addEventListener('click', (e) => {
         e.preventDefault();
         showPanel(elements.registerBox);
@@ -266,6 +262,8 @@ document.addEventListener('DOMContentLoaded', () => {
         showPanel(elements.loginSection);
     });
     
+    /* === INICIALIZÁLÁS === */
+    loadTheme();
     elements.passwordToggle.innerHTML = eyeOpenIcon;
     elements.regPasswordToggle.innerHTML = eyeOpenIcon;
     showStep(currentStep);
