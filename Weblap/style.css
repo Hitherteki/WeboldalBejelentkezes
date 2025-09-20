@@ -13,7 +13,7 @@ body { margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
 .login-section { display: flex; flex-direction: column; align-items: center; gap: 20px; }
 .option-boxes { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
 
-/* === Általános panel/kártya stílusok === */
+/* === Panel stílusok === */
 .panel { background-color: var(--dark-input); border: 1px solid var(--dark-border); border-radius: 12px; text-align: center; transition: all 0.5s ease-out; }
 .login-box { padding: 50px; box-shadow: 0 0 25px rgba(0, 255, 255, 0.2), 0 0 50px rgba(0, 255, 255, 0.1); width: 450px; max-width: 90%; }
 .option-box { padding: 30px 20px; box-shadow: 0 0 15px rgba(0, 255, 255, 0.15), 0 0 30px rgba(0, 255, 255, 0.05); width: 210px; cursor: pointer; animation: fadeIn var(--animation) ease-out 0.8s forwards; opacity: 0; }
