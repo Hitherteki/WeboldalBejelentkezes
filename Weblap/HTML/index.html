@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bejelentkezés</title>
+    <link rel="stylesheet" href="..\CSS\style.css">
+</head>
+<body class="theme-default">
+    <div class="background-worms">
+        <div></div><div></div><div></div><div></div><div></div>
+        <div></div><div></div><div></div><div></div><div></div>
+        <div></div><div></div><div></div><div></div><div></div>
+        <div></div><div></div><div></div><div></div><div></div>
+    </div>
+    
+    <main class="container">
+        <div class="panel master-panel">
+            <section class="content-section" id="login-section">
+                <h1>BEJELENTKEZÉS</h1>
+                <form id="loginForm">
+                    <div class="input-group">
+                        <input type="text" id="username" placeholder=" " required>
+                        <label for="username">FELHASZNÁLÓNÉV</label>
+                    </div>
+                    <div class="input-group">
+                        <input type="password" id="password" placeholder=" " required>
+                        <label for="password">JELSZÓ</label>
+                        <button type="button" class="password-toggle" id="password-toggle"></button>
+                    </div>
+                    <button type="submit" class="btn btn-primary">BELÉPÉS</button>
+                </form>
+                
+                <div class="login-options">
+                    <a href="#" id="forgot-password-link">Elfelejtette a jelszavát?</a>
+                    <span>|</span>
+                    <a href="#" id="create-account-link">Fiók létrehozása</a>
+                </div>
+            </section>
+
+            <section class="content-section hidden" id="register-box">
+                <h1>REGISZTRÁCIÓ</h1>
+                <div class="registration-progress">
+                    <div class="progress-step active" data-step="1">1</div>
+                    <div class="progress-line"></div>
+                    <div class="progress-step" data-step="2">2</div>
+                    <div class="progress-line"></div>
+                    <div class="progress-step" data-step="3">3</div>
+                    <div class="progress-line"></div>
+                    <div class="progress-step" data-step="4">4</div>
+                </div>
+                
+                <form id="registerForm" novalidate>
+                    <div class="registration-step active" id="step-1">
+                        <h2>SZEMÉLYES ADATOK</h2>
+                        <div class="input-group">
+                            <input type="text" id="reg-lastname" placeholder=" " required pattern="[A-Za-zÀ-ÖØ-öø-ÿ\s\-]+">
+                            <label for="reg-lastname">CSALÁDNÉV</label>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" id="reg-firstname" placeholder=" " required pattern="[A-Za-zÀ-ÖØ-öø-ÿ\s\-]+">
+                            <label for="reg-firstname">KERESZTNÉV</label>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" id="reg-displayname" placeholder=" " required>
+                            <label for="reg-displayname">MEGJELENÍTÉSI NÉV</label>
+                            <div class="input-help">Ez a név fog megjelenni az alkalmazásban.</div>
+                        </div>
+                    </div>
+
+                    <div class="registration-step hidden" id="step-2">
+                        <h2>LAKCÍM ADATOK</h2>
+                        <div class="input-group">
+                            <select id="reg-country" required>
+                                <option value="" disabled selected hidden></option>
+                                <option value="HU">Magyarország</option>
+                                <option value="AT">Ausztria</option>
+                                <option value="SK">Szlovákia</option>
+                                <option value="RO">Románia</option>
+                                <option value="RS">Szerbia</option>
+                                <option value="HR">Horvátország</option>
+                                <option value="SI">Szlovénia</option>
+                                <option value="UA">Ukrajna</option>
+                                <option value="DE">Németország</option>
+                                <option value="OTHER">Egyéb</option>
+                            </select>
+                            <label for="reg-country">ORSZÁG</label>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" id="reg-county" placeholder=" " required>
+                            <label for="reg-county">MEGYE/RÉGIÓ</label>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" id="reg-postal" placeholder=" " required pattern="[0-9]{4,5}" inputmode="numeric">
+                            <label for="reg-postal">IRÁNYÍTÓSZÁM</label>
+                        </div>
+                    </div>
+
+                    <div class="registration-step hidden" id="step-3">
+                        <h2>KAPCSOLATI ADATOK</h2>
+                        <div class="input-group">
+                            <input type="tel" id="reg-phone" placeholder=" " required>
+                            <label for="reg-phone">TELEFONSZÁM</label>
+                            <div class="input-help">Például: +36 30 123 4567</div>
+                        </div>
+                        <div class="input-group">
+                            <input type="email" id="reg-email" placeholder=" " required>
+                            <label for="reg-email">E-MAIL CÍM</label>
+                        </div>
+                        <div class="input-group">
+                            <input type="password" id="reg-password" placeholder=" " required minlength="8" pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}">
+                            <label for="reg-password">JELSZÓ</label>
+                            <div class="input-help">Min. 8 karakter, kis- és nagybetű, szám és speciális karakter.</div>
+                            <button type="button" class="password-toggle" id="reg-password-toggle"></button>
+                            </div>
+                        <div class="input-group">
+                            <input type="password" id="reg-password-confirm" placeholder=" " required>
+                            <label for="reg-password-confirm">JELSZÓ MEGERŐSÍTÉSE</label>
+                            </div>
+                    </div>
+
+                    <div class="registration-step hidden" id="step-4">
+                        <h2>FELTÉTELEK ELFOGADÁSA</h2>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="terms-privacy" required>
+                                <label for="terms-privacy">Elfogadom az <a href="#" class="terms-link">adatkezelési feltételeket</a></label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="terms-eula" required>
+                                <label for="terms-eula">Elfogadom a <a href="#" class="terms-link">felhasználási feltételeket (EULA)</a></label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="terms-newsletter">
+                                <label for="terms-newsletter">Hozzájárulok a hírlevelek és értesítések fogadásához</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="terms-age" required>
+                                <label for="terms-age">Megerősítem, hogy betöltöttem a 16. életévemet</label>
+                            </div>
+                        </div>
+                        <div class="final-registration">
+                            <button type="submit" class="btn btn-primary btn-final-reg hidden" id="final-reg-button">REGISZTRÁCIÓ BEFEJEZÉSE</button>
+                        </div>
+                    </div>
+
+                    <div class="step-navigation">
+                        <button type="button" class="nav-button prev-button" id="prev-step">ELŐZŐ</button>
+                        <button type="button" class="nav-button next-button" id="next-step" disabled>TOVÁBB</button>
+
+                    </div>
+                </form>
+                
+                <div class="options">
+                    <a href="#" class="back-to-login-link">VISSZA A BEJELENTKEZÉSHEZ</a>
+                </div>
+            </section>
+
+            <section class="content-section hidden" id="forgot-password-box">
+                <h1>JELSZÓ VISSZAÁLLÍTÁS</h1>
+                <form id="forgotPasswordForm">
+                    <div class="input-group">
+                        <input type="email" id="forgot-email" placeholder=" " required>
+                        <label for="forgot-email">E-MAIL CÍM</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">KÜLDÉS</button>
+                </form>
+                <div class="options">
+                    <a href="#" class="back-to-login-link">VISSZA A BEJELENTKEZÉSHEZ</a>
+                </div>
+            </section>
+        </div>
+    </main>
+    
+    <div class="theme-selector-container">
+        <div class="theme-box" data-theme="theme-light" style="background: #f6f8fa;"></div>
+        <div class="theme-box" data-theme="theme-coral" style="background: #b35646;"></div>
+        <div class="theme-box" data-theme="theme-sunrise" style="background: #3c2a21;"></div>
+        <div class="theme-box" data-theme="theme-ruby" style="background: #4a0e1d;"></div>
+        <div class="theme-box" data-theme="theme-forest" style="background: #1a2a1a;"></div>
+        <div class="theme-box" data-theme="theme-jade" style="background: #004d40;"></div>
+        <div class="theme-box" data-theme="theme-ocean" style="background: #0c243c;"></div>
+        <div class="theme-box" data-theme="theme-dusk" style="background: #4c3a64;"></div>
+        <div class="theme-box" data-theme="theme-midnight" style="background: #191f3a;"></div>
+        <div class="theme-box" data-theme="theme-default" style="background: #0d1117;"></div>
+    </div>
+
+    <script src="..\JS\script.js"></script>
+</body>
+</html>
