@@ -15,13 +15,13 @@ A projekt célja egy professzionális, felhasználóközpontú beléptetési meg
 ---
 
 ## 📂 Mappaszerkezet
-weblap/
-│── html/
-│ └── index.html 
-│── css/
-│ └── styles.css 
-│── JS/
-│ └── script.js 
+weblap/  
+│── html/  
+│ └── index.html  
+│── css/  
+│ └── styles.css  
+│── JS/  
+│ └── script.js  
 
 ---
 
